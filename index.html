@@ -1,89 +1,302 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="AML Project Showcase - A modern, dynamic website.">
-    <title>AML Project Showcase</title>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;800&family=Outfit:wght@400;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="style.css">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>For Fatima</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;1,500&family=Petit+Formal+Script&family=Quicksand:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --plum: #4a2c3d;
+    --wine: #7a3b52;
+    --rose: #d98a9b;
+    --blush: #f6dde0;
+    --cream: #fdf6f0;
+    --gold: #c9a15a;
+  }
+
+  *{ margin:0; padding:0; box-sizing:border-box; }
+
+  html, body{
+    min-height:100%;
+    background: linear-gradient(180deg, #fdf0ee 0%, #f7e2e6 45%, #ecd0da 100%);
+    font-family:'Quicksand', sans-serif;
+    color: var(--plum);
+  }
+
+  body{
+    min-height:100vh;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    padding: 32px 20px;
+    position:relative;
+    overflow-x:hidden;
+  }
+
+  /* floating hearts background */
+  .heart{
+    position:fixed;
+    top:-8vh;
+    font-size:16px;
+    color: var(--rose);
+    opacity:0.55;
+    animation: fall linear infinite;
+    z-index:0;
+  }
+  @keyframes fall{
+    0%{ transform: translateY(0) rotate(0deg); opacity:0; }
+    10%{ opacity:0.6; }
+    90%{ opacity:0.5; }
+    100%{ transform: translateY(115vh) rotate(180deg); opacity:0; }
+  }
+
+  .wrap{
+    position:relative;
+    z-index:1;
+    width:100%;
+    max-width: 560px;
+  }
+
+  /* ---------- STEP 1: SEALED CARD ---------- */
+  #cover{
+    text-align:center;
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+  #cover.hidden{
+    display:none;
+  }
+
+  .eyebrow{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.1rem;
+    color: var(--wine);
+    margin-bottom: 22px;
+  }
+
+  .seal-btn{
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: radial-gradient(circle at 32% 28%, #cf7f95, var(--wine) 75%);
+    border: none;
+    color: #ffe9ee;
+    font-family:'Petit Formal Script', cursive;
+    font-size: 3rem;
+    cursor: pointer;
+    box-shadow: 0 12px 28px rgba(122,59,82,0.35);
+    transition: transform 0.35s ease, box-shadow 0.35s ease;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .seal-btn:hover{
+    transform: scale(1.06);
+    box-shadow: 0 16px 34px rgba(122,59,82,0.42);
+  }
+  .seal-btn:active{ transform: scale(0.97); }
+
+  .tap-hint{
+    margin-top: 20px;
+    font-size: 0.85rem;
+    color: var(--wine);
+    opacity:0.75;
+  }
+
+  /* ---------- STEP 2: LETTER ---------- */
+  #letter{
+    opacity:0;
+    transform: translateY(24px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+  }
+  #letter.show{
+    opacity:1;
+    transform: translateY(0);
+  }
+
+  .card{
+    background: var(--cream);
+    border-radius: 16px;
+    padding: 44px 34px 38px;
+    box-shadow: 0 25px 50px rgba(122,59,82,0.22), 0 2px 6px rgba(122,59,82,0.08);
+    border: 1px solid rgba(201,161,90,0.25);
+    position: relative;
+  }
+
+  .to-line{
+    font-family:'Cormorant Garamond', serif;
+    font-style: italic;
+    font-size: 1.05rem;
+    color: var(--gold);
+    text-align:center;
+    margin-bottom: 6px;
+    letter-spacing: 1px;
+  }
+
+  .name{
+    font-family:'Petit Formal Script', cursive;
+    font-size: 2.8rem;
+    color: var(--wine);
+    text-align:center;
+    margin-bottom: 20px;
+  }
+
+  .flower-wrap{
+    display:flex;
+    justify-content:center;
+    margin-bottom: 24px;
+  }
+
+  .petal-shape{
+    transform-origin: 60px 65px;
+    transform: scale(0);
+    animation: bloomPetal 0.7s cubic-bezier(.3,1.4,.5,1) forwards;
+  }
+  @keyframes bloomPetal{
+    to{ transform: scale(1); }
+  }
+
+  .message{
+    font-family:'Cormorant Garamond', serif;
+    font-size: 1.22rem;
+    line-height: 1.85;
+    color: var(--plum);
+    text-align:center;
+  }
+
+  .message p{
+    margin-bottom: 18px;
+    opacity:0;
+    animation: lineIn 0.9s ease forwards;
+  }
+
+  .sign{
+    margin-top: 24px;
+    font-family:'Petit Formal Script', cursive;
+    font-size: 1.5rem;
+    color: var(--wine);
+    text-align:center;
+    opacity:0;
+    animation: lineIn 0.9s ease forwards;
+  }
+
+  @keyframes lineIn{
+    from{ opacity:0; transform:translateY(8px); }
+    to{ opacity:1; transform:translateY(0); }
+  }
+
+  .replay{
+    display:block;
+    margin: 28px auto 0;
+    background:none;
+    border: 1px solid var(--wine);
+    color: var(--wine);
+    padding: 10px 22px;
+    border-radius: 999px;
+    font-family:'Quicksand', sans-serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    cursor:pointer;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+  .replay:hover{ background: var(--wine); color:#fff; }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ animation: none !important; transition: none !important; }
+  }
+</style>
 </head>
 <body>
-    <nav class="navbar">
-        <div class="logo">AML<span>.</span></div>
-        <ul class="nav-links">
-            <li><a href="#about">About</a></li>
-            <li><a href="#features">Features</a></li>
-            <li><a href="#contact">Contact</a></li>
-        </ul>
-    </nav>
 
-    <header class="hero" id="home">
-        <div class="hero-content">
-            <h1 class="hero-title">Discover the Future of <br><span class="gradient-text">AML Solutions</span></h1>
-            <p class="hero-subtitle">Next-generation monitoring and detection wrapped in a beautiful, simple, and powerful interface.</p>
-            <div class="hero-buttons">
-                <a href="#features" class="btn btn-primary">Explore Features</a>
-                <a href="https://github.com/sharazar1/aml" class="btn btn-secondary" target="_blank">View on GitHub</a>
-            </div>
-        </div>
-        <div class="hero-visual">
-            <div class="glass-card main-card">
-                <div class="card-header">
-                    <div class="dot red"></div>
-                    <div class="dot yellow"></div>
-                    <div class="dot green"></div>
-                </div>
-                <div class="card-body">
-                    <h3>System Status</h3>
-                    <div class="status-bar">
-                        <div class="status-fill"></div>
-                    </div>
-                    <p>All monitoring systems operational.</p>
-                </div>
-            </div>
-            <div class="glass-card secondary-card float-animation">
-                <div class="icon-container">
-                    <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-                </div>
-                <p class="stat">99.9%</p>
-                <p class="stat-label">Accuracy</p>
-            </div>
-        </div>
-    </header>
+<div class="wrap">
 
-    <section class="features" id="features">
-        <h2 class="section-title">Core Capabilities</h2>
-        <div class="feature-grid">
-            <div class="feature-card">
-                <div class="feature-icon">🔍</div>
-                <h3>Advanced Analytics</h3>
-                <p>Leverage machine learning to detect complex patterns and anomalies in transaction data.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">⚡</div>
-                <h3>Real-time Monitoring</h3>
-                <p>Process millions of transactions with sub-second latency for immediate risk assessment.</p>
-            </div>
-            <div class="feature-card">
-                <div class="feature-icon">🛡️</div>
-                <h3>Compliance Ready</h3>
-                <p>Built-in reporting and audit trails designed to meet stringent regulatory requirements.</p>
-            </div>
-        </div>
-    </section>
+  <div id="cover">
+    <p class="eyebrow">a little something for Fatima…</p>
+    <button class="seal-btn" id="openBtn" aria-label="Open the letter">F</button>
+    <p class="tap-hint">tap to open</p>
+  </div>
 
-    <footer class="footer" id="contact">
-        <div class="footer-content">
-            <h2>Ready to transform your workflow?</h2>
-            <p>Join the open-source community shaping the future.</p>
-            <a href="https://github.com/sharazar1/aml" class="btn btn-primary" target="_blank">Star on GitHub</a>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2024 AML Project. Hosted on GitHub Pages.</p>
-        </div>
-    </footer>
+  <div id="letter">
+    <div class="card">
+      <p class="to-line">happy birthday, my dear</p>
+      <p class="name">Fatima Tariq</p>
 
-    <script src="script.js"></script>
+      <div class="flower-wrap">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <g fill="#e7a3b3">
+            <ellipse class="petal-shape" cx="60" cy="42" rx="11" ry="20" style="animation-delay:0.1s"/>
+            <ellipse class="petal-shape" cx="78" cy="52" rx="11" ry="20" transform="rotate(60 60 65)" style="animation-delay:0.18s"/>
+            <ellipse class="petal-shape" cx="78" cy="78" rx="11" ry="20" transform="rotate(120 60 65)" style="animation-delay:0.26s"/>
+            <ellipse class="petal-shape" cx="60" cy="88" rx="11" ry="20" transform="rotate(180 60 65)" style="animation-delay:0.34s"/>
+            <ellipse class="petal-shape" cx="42" cy="78" rx="11" ry="20" transform="rotate(240 60 65)" style="animation-delay:0.42s"/>
+            <ellipse class="petal-shape" cx="42" cy="52" rx="11" ry="20" transform="rotate(300 60 65)" style="animation-delay:0.5s"/>
+          </g>
+          <circle cx="60" cy="65" r="10" fill="#c9a15a"/>
+        </svg>
+      </div>
+
+      <div class="message" id="message">
+        <p style="animation-delay:0.3s">It's been two years since we were "us." Two years of learning how to live in a world that doesn't have you in it the way it used to.</p>
+        <p style="animation-delay:1.0s">And still — every single time, in the smallest, most unexpected moments, I miss you. Not the idea of you. You.</p>
+        <p style="animation-delay:1.7s">I don't know how time was supposed to fade that. Mine never got the memo. I still love you, quietly and completely, even from this distance we're standing at.</p>
+        <p style="animation-delay:2.4s">Today has nothing to do with any of that, though. Today is just yours. So happy birthday, Fatima — I hope it's soft, and full, and exactly as good as you deserve.</p>
+        <p style="animation-delay:3.1s">Some feelings don't need permission to stay. Mine didn't ask — it just did.</p>
+      </div>
+
+      <p class="sign" style="animation-delay:3.8s">— always, even from here</p>
+
+      <button class="replay" id="replayBtn">open it again</button>
+    </div>
+  </div>
+
+</div>
+
+<script>
+  var openBtn = document.getElementById('openBtn');
+  var replayBtn = document.getElementById('replayBtn');
+  var cover = document.getElementById('cover');
+  var letter = document.getElementById('letter');
+
+  function openLetter(){
+    cover.classList.add('hidden');
+    letter.classList.add('show');
+  }
+
+  function resetLetter(){
+    letter.classList.remove('show');
+    cover.classList.remove('hidden');
+
+    document.querySelectorAll('.message p, .sign').forEach(function(el){
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = null;
+    });
+    document.querySelectorAll('.petal-shape').forEach(function(el){
+      el.style.animation = 'none';
+      void el.offsetWidth;
+      el.style.animation = null;
+    });
+  }
+
+  openBtn.addEventListener('click', openLetter);
+  replayBtn.addEventListener('click', resetLetter);
+
+  // ambient floating hearts
+  var heartChars = ['♥','❀','✿'];
+  for(var i = 0; i < 14; i++){
+    var h = document.createElement('div');
+    h.className = 'heart';
+    h.textContent = heartChars[Math.floor(Math.random()*heartChars.length)];
+    h.style.left = (Math.random()*100) + 'vw';
+    h.style.fontSize = (12 + Math.random()*12) + 'px';
+    h.style.animationDuration = (12 + Math.random()*8) + 's';
+    h.style.animationDelay = (Math.random()*10) + 's';
+    document.body.appendChild(h);
+  }
+</script>
+
 </body>
 </html>
